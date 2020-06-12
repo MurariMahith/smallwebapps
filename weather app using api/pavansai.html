@@ -1,0 +1,83 @@
+<html>
+    <style>
+        #divid
+        {
+            margin: auto;
+            width: 50%;
+            border: 1px solid black;
+            padding: 10px;
+            background-image: url(image2.jpg);
+            color:black;
+        }
+        #btnd
+        {
+            padding-left: 50px;
+            background-color: gray;
+        }
+    </style>
+    <body onload='load()'>
+    <div  id='divid' class='divid' style='color:black;'>
+
+        <label >Enter the City name: </label>
+        <input type='text' id='inpid'></input>
+
+        <button id='mainbtn' onclick='fn1()'>Get Weather</button>
+        <p id='detail' >Weather Details in : </p>
+        <p id='sit' >Weather situation : </p>
+        <p id='pid' >Temperature : </p>
+        <p id='max' >Max Temperature : </p>
+        <p id='min' >Min Temperature : </p>
+        <p id='hpid' >Humidity : </p>
+        <p id='wsp' >Wind speed : </p>
+        <!-- <p id='srid'>Sunrise : </p>
+        <p id='ssid'>Sunset : </p> -->
+
+    </div>    
+    </body>
+</html>
+<script> 
+
+    function fn1()
+    {
+        var cityname=document.getElementById('inpid').value;
+        
+        fetch('http://api.openweathermap.org/data/2.5/weather?q='+cityname+'&appid=74bd79adc5c940c98613c71af5a1d05e&units=metric')
+        .then(function (res)
+        {
+            return res.json()
+        }
+        .then(data=>
+        {
+            document.getElementById('detail').innerHTML='Weather Details in <b><i><strong>'+cityname+'</strong></i></b> is:';
+            document.getElementById('sit').innerHTML='Weather situation : '+data.weather[0].main+', '+data.weather[0].description;
+            document.getElementById('pid').innerHTML='Temperature : '+data["main"]["temp"]+" Celsius";
+            document.getElementById('max').innerHTML='Max Temperature : '+data["main"]["temp_max"]+" Celsius";
+            document.getElementById('min').innerHTML='Min Temperature : '+data["main"]["temp_min"]+" Celsius";
+            document.getElementById('hpid').innerHTML='Humidity : '+data["main"]["humidity"]+"%";
+            
+            var wspd=(data["wind"]["speed"]*18)/5;
+            var rspd=wspd.toFixed(2);
+               
+            document.getElementById('wsp').innerHTML='Wind speed : '+rspd+" km/hr"
+            
+            
+            // var rise=new Date(data["sys"]["sunrise"]);
+            // var sset=new Date(data["sys"]["sunset"])
+            // document.getElementById('srid').innerHTML+=rise;
+            // document.getElementById('ssid').innerHTML+=sset;
+        }).catch(err=>alert('Due to these errors there might be error please check and try again\n1.Enter the correct city name with correct spelling\n 2.check your network connection'))
+
+    }
+    function load()
+    {
+        var date=new Date()
+            var hrs=date.getHours()
+            console.log(hrs)
+            
+            if(hrs>19 || hrs<6)
+            {
+                document.getElementById('divid').style.backgroundImage="url(night.jpg)";
+                document.getElementById('divid').style.color='white'
+            }
+    }
+</script>
