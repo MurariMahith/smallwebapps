@@ -1,0 +1,57 @@
+            #outerdiv
+            {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                left: 40%;
+                margin-left: -50px;
+                border-radius: 10px;
+                background-color:beige;
+            }
+            #innerdiv
+            {
+                width:300px;
+                margin: 0 auto;
+                padding: 30px;
+                background-color:whitesmoke;
+                border-radius: 10px;
+            }
+            #btndiv
+            {
+                text-align: center;
+            }
+            .visible
+            {
+                visibility: hidden;
+            }
+            #h1
+            {
+                visibility: hidden;
+                text-align: center;
+                color: black;
+            }
+            #h1t
+            {
+                text-align: center;
+                color:darkgreen;
+            }
+            #btn
+            {
+                text-align: center;
+                background-color: lightgray;
+                border-radius: 5px;
+            }
+            h4
+            {
+                text-align: center;
+            }
+            #fatheading
+            {
+                color: rebeccapurple;
+                text-align: center;
+            }
+            #caption
+            {
+                color: black;
+                text-align: center;
+            }
