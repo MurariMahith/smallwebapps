@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works of Sg Photography</title>
+    <style>
+        .column 
+        {
+            float: left;
+            width: 32%;
+            border: 1px solid darkgray;
+            margin: 5px;
+        }
+        /* Clear floats after the columns */
+        .row:after 
+        {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .caption
+        {
+            width:auto;
+            text-align: center;
+        }
+        .image
+        {
+            padding: 17px;
+        }
+        .hbtn
+        {
+            background: none;
+            border: none;
+            padding-right: 50px;
+            font-style: bold;
+        }
+        .hbtn:hover
+        {
+            font-size: large;
+        }
+        .maincaption
+        {
+            width:auto;
+            text-align: right;            
+        }
+        body
+        {
+            background-color:linen;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: darkgray;padding: 5px;">
+        <h1 class="maincaption">Sg Photography</h1>
+        <button class="hbtn" onclick="window.location.href='homepage.html'">Sg Photography</button>
+        <button class="hbtn" onclick="window.location.href='next.html'">Order</button>
+        <button class="hbtn" onclick="window.location.href='signup.html'">Signup</button>
+        <button class="hbtn" onclick="window.location.href='login.html'">Login</button>
+        <button class="hbtn" onclick="window.location.href='Works.html'">Our Works</button>
+    </header>
+    <div style="padding: 40px;">
+        <h1>Our range of collections:</h1>
+        <div class="row">
+            <div class="column">
+                <img src="images/land (3).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Macro Photography</h4>
+            </div>
+            <div class="column">
+                <img src="images/land (2).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Nature Photography</h4>
+            </div>
+            <div class="column">
+                <img src="images/land (1).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Abstract Photography</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img src="images/land (4).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Raw</h4>
+            </div>
+            <div class="column">
+                <img src="images/land (3).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Edited</h4>
+            </div>
+            <div class="column">
+                <img src="images/land (1).jpg" width="370" height="250" class="image">
+                <h4 class="caption">Monochrome</h4>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color:lawngreen; border-radius: 2px;padding: 2px;">
+        <p style="width: auto;text-align: end;">-murari mahith</p>
+    </footer>
+</body>
+</html>
+<script src="jquery.js" type="text/javascript"></script>
+<script>
+
+</script>
