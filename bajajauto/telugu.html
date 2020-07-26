@@ -1,0 +1,478 @@
+<html lang="te" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<link rel = "icon" href ="star.png" type = "image/jpg"> 
+	<title> Fuel Calculator </title>
+	<style>
+		td, th 
+        {
+            border: 1px solid black;
+            padding: 8px;
+            width: 200px;
+        }
+        tr:nth-child(even)
+        {
+            background-color: #f2f2f2;
+        }
+        tr:hover 
+        {
+            background-color: #ddd;
+        }
+        th 
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+		.example_e 
+		{
+			background: #404040;
+			color: #ffffff !important;
+			font-weight: 100;
+			padding: 20px;
+			height:15px;
+			position:relative;
+			text-transform: uppercase;
+			text-decoration: none;
+			display: inline-block;
+			transition: all 0.3s ease 0s;
+			border-radius: 20px 20px 20px 20px;
+		}
+		.example_e:hover 
+		{
+			color: #404040 !important;
+			font-weight: 700 !important;
+			letter-spacing: 3px;
+			background: none;
+			-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+			-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+			transition: all 0.3s ease 0s;
+		}
+	
+		.example_b 
+		{
+		color: Black !important;
+		text-transform: uppercase;
+		text-decoration: none;
+		background: #f29898;
+		padding: 20px;
+		border-radius: 50px;
+		display: inline-block;
+		border: none;
+		transition: all 0.4s ease 0s;
+		}
+		.example_b:hover {
+		text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+		-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+		-moz-box-shadow: 0px 5px 40px -10px rgba(100,0,0,0.57);
+		transition: all 0.4s ease 0s;
+		}
+
+		html {
+			height: 100%;
+			/* background: linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+			background: 
+			linear-gradient(-45deg, 
+				transparent 49%, #ccc 49%, #ccc 51%, transparent 51%), 
+			linear-gradient(#e7e7eb, #aca0a7);   */
+			background-color: cornflowerblue;
+			font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+			padding-top: 50px;
+			background-size: 5px 5px, 100% 100%;
+		}
+
+		h1 
+		{
+			text-shadow: 1px 1px 10px rgba(black, .5);
+		}
+
+		h1, h2 
+		{
+			text-align: center;
+			color: white;
+			font-size: 2.5em;
+			line-height: 1.3em;
+			font-weight: 300;
+			font-family: inherit;
+		}
+
+		h2 {
+			margin-top: 100px;
+			font-size: 1.3em;
+			font-style: italic;
+			font-weight: 100;
+		}
+
+		.body {
+			width: 100%;
+			height: 250px;
+			box-sizing: border-box;
+		}
+
+		input {
+			box-sizing: border-box;
+			font-size: 13px;
+			vertical-align: top;
+		}
+
+
+
+		.search {
+			padding: 0 30px;
+			font-size: 18px;
+			width: 54%;
+			max-width: 1400px;
+			height: 40px;
+			border: 1px solid darken(white, 30%);
+			border-radius: 20px 20px 20px 20px;
+		}
+
+		#search1 {
+		/* border-radius: 15px 50px 30px 5px; */
+		background: white;
+		color:black
+		padding: 20px; 
+		width: 50px;
+		height: 25px; 
+		}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0; 
+			overflow:hidden;
+			background-color: white;
+		}
+
+		li {
+		float:left;
+		}
+		li a {
+			display: block;
+			color: black;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover:not(.active) 
+		{
+			background-color: rgb(119, 97, 245);
+			border-radius: 9px;
+		}
+
+		.active {
+			background-color: rgb(119, 97, 245);
+			border-radius: 9px;
+		}
+        .column 
+        {
+            float: left;
+            width: 32%;
+			margin: 5px;
+			float: right;
+        }
+        /* Clear floats after the columns */
+        .row:after 
+        {
+            content: "";
+            display: table;
+            clear: both;
+        }
+</style>
+</head>
+<body>
+
+<!-- <ul>
+	<br>
+  <li><img src="bajaj.png" alt="Bajaj_Logo" style="width:100px;height:50px;" > </li>
+  <li><a href="mailto:customerservice@bajajauto.co.in">మాకు ఇమెయిల్ చేయడానికి: customerservice@bajajauto.co.in</a></li>
+  <li><a>
+	వినియోగదారుల సహాయ కేంద్రం : +917219821111</a></li>
+  <li><a href="https://www.bajajauto.com/owners-arena">మద్దతు</a></a></li>
+	<br>
+</ul> -->
+<br>
+<div class="row" >
+	<div class="column" style="display: flex;justify-content: center;align-items: center;">
+		<a class="example_b" id="hindibutton" href="hindi.html" target="_self">हिन्दी</a>
+	</div>
+	<div class="column" style="display: flex;justify-content: center;align-items: center;">
+		<a class="example_b" id="englishbutton" href="index.html" target="_self">English</a>
+	</div>
+	<div class="column" style="display: flex;justify-content: center;align-items: center;"> 
+		<a class="example_b" id="telugubutton" href="telugu.html" target="_self">తెలుగు</a>
+	</div>		
+</div>
+	<div class="body">
+		<h1>&nbsp;</h1>
+	<h1 style = "font-family:trajan">
+		మీరు మీ పంపిణీ ఖర్చులో తీవ్రమైన పొదుపును అనుభవించబోతున్నారు</h1>
+	</div>
+	<form>
+	<h3 style="text-align: center;">
+		ఎన్ని వాహనాలు</h3>
+	<p style="text-align: center;">
+	<input class="search" type="text" id="v" placeholder="మీ వద్ద ఉన్న మొత్తం వాహనాలు" required/> 
+	</p>
+	<br>
+
+		<h3 style="text-align: center;">
+			మీరు ఎంత డ్రైవ్ చేస్తున్నారో మాకు తెలియజేయండి !!
+	</h3> 
+		<p style="text-align: center;">
+		<input class="search" type="text" id="km" placeholder="km/day" required/> 
+		</p>
+		<br>
+		<br>
+
+		</form>
+		<p style="text-align: center;">
+			క్లిక్ చేసే ముందు విలువలను నమోదు చేయండి</p>
+		<div style="padding-left: 46%;">
+		<!-- <br><br>
+		 -->
+		<a class="example_e" href="javascript:calculate();"> 
+			లెక్కించు </a></div>
+		<div id='mukesh' style="display: none;">
+			<h1 id='save'>మీరు 4 సంవత్సరాలలో ఆదా చేయవచ్చు:</h1>
+			<h1 style="color: green;" id='save2'></h1>
+			<h1>
+				మీరు డబ్బును ఎలా ఆదా చేయవచ్చో తెలుసుకోవటానికి ఆసక్తి !!</h1>
+			<div style="padding-left: 45%;">
+			<a class="example_e" href="javascript:page2()"> 
+				ఇంకా చూపించు </a></div>
+		</div><br><br>
+		</div>
+
+
+
+
+
+
+<div id='page2' style="display: none;">
+<div style="text-align: center;">
+<h1>
+	మీ ప్రస్తుత వాహనం VS బజాజ్ మాగ్జిమా సి సిఎన్జి</h1><br>
+<table style="text-align: center;padding-left: 25%;">
+	<tr>
+		<th style="background-color:inherit;">
+			పారామీటర్లు</th>
+		<th style="background-color: red;">ఇప్పటికే ఉన్న ఉత్పత్తి</th>
+		<th>బజాజ్ మాగ్జిమా సి సిఎన్జి</th>
+	</tr>
+	<tr>
+		<td>నిర్వహణ ఖర్చు / నెల / వాహనానికి *</td>
+		<td id='maintain_nrml'></td>
+		<td id='maintain_special'></td>
+	</tr>
+	<tr>
+		<td>
+			ఇంధన రకం</td>
+		<td>
+			డీజిల్</td>
+		<td>సిఎన్జి</td>
+	</tr>
+	<tr>
+		<td>
+			ఇంధన వ్యయం (Rs./L or Rs./kgs)</td>
+		<td>77.91</td>
+		<td>55</td>
+	</tr>
+	<tr>
+		<td>
+			సగటు</td>
+		<td>26</td>
+		<td>35</td>
+	</tr>
+</table><br>
+<h3>
+	నిరాకరణ: ఈ లెక్కలు మార్కెట్ నుండి పొందిన డేటాపై ఆధారపడి ఉంటాయి.</h3>
+<a class="example_e" href="javascript:page3()"> ఇంకా చూపించు</a>
+</div>
+</div>
+
+
+
+
+
+
+<div id='page3' style="display: none;">
+    <div style="text-align: center;">
+		<h1>ప్రస్తుత ఉత్పత్తిలో నికర వ్యయం</h1>
+		<table style="padding-left: 32%;">
+			<tr>
+				<td>
+					ఇంధన వ్యయం Rs./km</td>
+				<td>3.00</td>
+			</tr>
+			<tr>
+				<td>నెలకు 1 వాహనానికి ఇంధన వ్యయం</td>
+				<td id='pr_mnth_fuel_exp_nrml'>2250</td>
+			</tr>
+			<tr>
+				<td>
+					సంవత్సరానికి 1 వాహనానికి ఇంధన వ్యయం</td>
+				<td id='pr_yr_fuel_exp_nrml'>27000</td>
+			</tr>
+			<tr>
+				<td>సంవత్సరానికి మొత్తం వాహనాలు ఇంధన వ్యయం</td>
+				<td id='tot_pr_yr_fuel_exp_nrml'>27000</td>
+			</tr>
+			<tr>
+				<td>సంవత్సరానికి మొత్తం వాహనాలు నిర్వహణ వ్యయం</td>
+				<td id='tot_pr_yr_maintain_exp_nrml'></td>
+			</tr>
+		</table>
+		<h1>మాగ్జిమా సి సిఎన్‌జిలో నికర వ్యయం</h1>
+		<table style="padding-left: 32%;">
+			<tr>
+				<td>
+					ఇంధన వ్యయం Rs./km</td>
+				<td>1.57</td>
+			</tr>
+			<tr>
+				<td>
+					నెలకు 1 వాహనానికి ఇంధన వ్యయం</td>
+				<td id='pr_mnth_fuel_exp_special'></td>
+			</tr>
+			<tr>
+				<td>సంవత్సరానికి 1 వాహనానికి ఇంధన వ్యయం</td>
+				<td id='pr_yr_fuel_exp_special'>14130</td>
+			</tr>
+			<tr>
+				<td>
+					సంవత్సరానికి మొత్తం విమానాల ఇంధన వ్యయం</td>
+				<td id='tot_pr_yr_fuel_exp_special'>14130</td>
+			</tr>
+			<tr>
+				<td>సంవత్సరానికి మొత్తం వాహనాలు నిర్వహణ వ్యయం</td>
+				<td id='tot_pr_yr_maintain_exp_special'></td>
+			</tr>
+		</table>
+		<h1>పొదుపు సారాంశం</h1>
+		<table style="padding-left: 32%;">
+			<tr>
+				<td>
+					ఇంధనంలో ఆదా చేయడం (1 సంవత్సరం)</td>
+				<td id='save_fuel_1'>12870</td>
+			</tr>
+			<tr>
+				<td>
+					ఇంధనంలో ఆదా చేయడం (4 సంవత్సరాలు)</td>
+				<td id='save_fuel_4'>51480</td>
+			</tr>
+			<tr>
+				<td>నిర్వహణపై ఆదా (1 సంవత్సరం)</td>
+				<td id='save_maintain_1'>900</td>
+			</tr>
+			<tr>
+				<td>నిర్వహణపై ఆదా (4 సంవత్సరాలు)</td>
+				<td id='save_maintain_4'>3600</td>
+			</tr>
+			<tr>
+				<td>
+					మొత్తం పొదుపు (1 సంవత్సరం)</td>
+				<td id='tot_save_1'>13770</td>
+			</tr>
+			<tr>
+				<td>
+					మొత్తం పొదుపు (4 సంవత్సరాలు)</td>
+				<td id='tot_save_4'>55080</td>
+			</tr>
+		</table>
+	</div> 
+</div>
+<br><br>
+	<div id='footer' style="text-align: center;border-radius: 10px;display: none;">
+		<ul>
+			<br>
+		  <li><img src="bajaj.png" alt="Bajaj_Logo"	> </li></ul> 
+		  <ul style="padding-left: 400px;">
+		  <li><a href="mailto:customerservice@bajajauto.co.in">మాకు ఇమెయిల్ చేయడానికి: customerservice@bajajauto.co.in</a></li>
+		  <li><a>వినియోగదారుల సహాయ కేంద్రం : +917219821111</a></li>
+		  <li><a href="https://www.bajajauto.com/owners-arena">మద్దతు</a></li>
+			<br>
+		
+		</ul> 
+		<br>
+		గమనిక: ఈ వెబ్‌సైట్‌ను బజాజ్ ఆటో డీలర్లు అభివృద్ధి చేశారు
+	</div>
+</body>
+</html>
+<script>
+		function calculate()
+	{
+		var vehicles=document.getElementById('v').value
+
+		var distance=document.getElementById('km').value
+		
+		var maintain_nrml=vehicles*0.6*30
+		document.getElementById('maintain_nrml').innerHTML=maintain_nrml
+		
+		var maintain_special=vehicles*0.5*30
+		document.getElementById('maintain_special').innerHTML=maintain_special
+
+        var pr_mnth_fuel_exp_nrml=3*30*distance
+        document.getElementById('pr_mnth_fuel_exp_nrml').innerHTML=pr_mnth_fuel_exp_nrml        
+
+		var pr_yr_fuel_exp_nrml=pr_mnth_fuel_exp_nrml*12
+        document.getElementById('pr_yr_fuel_exp_nrml').innerHTML=pr_yr_fuel_exp_nrml
+
+		var tot_pr_yr_fuel_exp_nrml=pr_yr_fuel_exp_nrml*vehicles
+        document.getElementById('tot_pr_yr_fuel_exp_nrml').innerHTML=tot_pr_yr_fuel_exp_nrml
+
+		var tot_pr_yr_maintain_exp_nrml=vehicles*12*maintain_nrml
+        document.getElementById('tot_pr_yr_maintain_exp_nrml').innerHTML=tot_pr_yr_maintain_exp_nrml
+
+		var pr_mnth_fuel_exp_special=1.57*30*distance
+        document.getElementById('pr_mnth_fuel_exp_special').innerHTML=pr_mnth_fuel_exp_special
+
+		var pr_yr_fuel_exp_special=pr_mnth_fuel_exp_special*12
+        document.getElementById('pr_yr_fuel_exp_special').innerHTML=pr_yr_fuel_exp_special
+
+		var tot_pr_yr_fuel_exp_special=pr_yr_fuel_exp_special*vehicles
+        document.getElementById('tot_pr_yr_fuel_exp_special').innerHTML=tot_pr_yr_fuel_exp_special
+
+		var tot_pr_yr_maintain_exp_special=vehicles*12*maintain_special
+        document.getElementById('tot_pr_yr_maintain_exp_special').innerHTML=tot_pr_yr_maintain_exp_special
+
+		var save_fuel_1=tot_pr_yr_fuel_exp_nrml-tot_pr_yr_fuel_exp_special
+        document.getElementById('save_fuel_1').innerHTML=save_fuel_1
+
+		var save_fuel_4=save_fuel_1*4
+        document.getElementById('save_fuel_4').innerHTML=save_fuel_4
+
+		var save_maintain_1=tot_pr_yr_maintain_exp_nrml-tot_pr_yr_maintain_exp_special
+        document.getElementById('save_maintain_1').innerHTML=save_maintain_1
+
+		var save_maintain_4=save_maintain_1*4
+        document.getElementById('save_maintain_4').innerHTML=save_maintain_4
+
+		tot_save_1=save_maintain_1+save_fuel_1
+        document.getElementById('tot_save_1').innerHTML=tot_save_1
+
+		tot_save_4=tot_save_1*4
+        document.getElementById('tot_save_4').innerHTML=tot_save_4
+        
+		//document.getElementById('save').innerHTML='Rs.'+document.getElementById('save').innerHTML+tot_save_4+'/-'
+		document.getElementById('save').innerHTML='మీరు పొదుపు చేయవచ్చు Rs.'+tot_save_4+'/- 4 సంవత్సరాలలో'
+		document.getElementById('save2').innerHTML='Rs.'+tot_save_4+'/-'
+		
+		document.getElementById('mukesh').style.display='block'
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+	function page2()
+	{
+		document.getElementById('page2').style.display='block'
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+	function page3()
+	{
+		document.getElementById('page3').style.display='block'
+		document.getElementById('footer').style.display='block'
+		// window.scrollTo(0,document.body.scrollHeight);
+	}
+</script>
