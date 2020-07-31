@@ -1,0 +1,593 @@
+{% load static %}
+<html lang="te" dir="ltr">
+<head>
+	<script src="{% static 'jquery.js' %}"></script>
+	
+	<!-- animation src -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+	<meta charset="utf-8">
+	<link rel = "icon" href ="{% static 'star.png' %}" type = "image/jpg"> 
+	<title> Fuel Calculator </title>
+	<style>
+		td, th 
+        {
+            border: 1px solid black;
+            padding: 8px;
+            width: 200px;
+        }
+        tr:nth-child(even)
+        {
+            background-color: #f2f2f2;
+        }
+        tr:hover 
+        {
+            background-color: #ddd;
+        }
+        th 
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+		.example_e 
+		{
+			background: #404040;
+			color: #ffffff !important;
+			font-weight: 100;
+			padding: 20px;
+			height:15px;
+			position:relative;
+			text-transform: uppercase;
+			text-decoration: none;
+			display: inline-block;
+			transition: all 0.3s ease 0s;
+			border-radius: 20px 20px 20px 20px;
+		}
+		.example_e:hover 
+		{
+			color: #404040 !important;
+			font-weight: 700 !important;
+			letter-spacing: 3px;
+			background: none;
+			-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+			-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+			transition: all 0.3s ease 0s;
+		}
+	
+		.example_b 
+		{
+		color: Black !important;
+		text-transform: uppercase;
+		text-decoration: none;
+		background: white;
+		padding: 20px;
+		border-radius: 50px;
+		display: inline-block;
+		border: none;
+		transition: all 0.4s ease 0s;
+		width: 100px;
+		text-align: center;
+		}
+		.example_b:hover {
+		text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+		-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+		-moz-box-shadow: 0px 5px 40px -10px rgba(100,0,0,0.57);
+		transition: all 0.4s ease 0s;
+		}
+		html 
+		{
+			height: 100%;
+			/* background: linear-gradient(90deg, #00c6ff 10%, #0072ff 90%);
+			background: 
+			linear-gradient(-45deg, 
+				transparent 49%, #ccc 49%, #ccc 51%, transparent 51%), 
+			linear-gradient(#e7e7eb, #aca0a7);   */
+			background-color: cornflowerblue;
+			font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+			font-size: 20px;
+			padding-top: 50px;
+			background-size: 5px 5px, 100% 100%;
+		}
+		h1 
+		{
+			text-shadow: 1px 1px 10px rgba(black, .5);
+		}
+		h1, h2 
+		{
+			text-align: center;
+			color: white;
+			font-size: 2.5em;
+			line-height: 1.3em;
+			font-weight: 300;
+			font-family: inherit;
+		}
+		h2 
+		{
+			margin-top: 100px;
+			font-size: 1.3em;
+			font-style: italic;
+			font-weight: 100;
+		}
+		.body 
+		{
+			width: 100%;
+			height: 250px;
+			box-sizing: border-box;
+		}
+
+		input {
+			box-sizing: border-box;
+			font-size: 13px;
+			vertical-align: top;
+		}
+		.search {
+			padding: 0 30px;
+			font-size: 18px;
+			width: 54%;
+			max-width: 1400px;
+			height: 40px;
+			border: 1px solid darken(white, 30%);
+			border-radius: 20px 20px 20px 20px;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0; 
+			overflow:hidden;
+			background-color: white;
+		}
+
+		li {
+		float:left;
+		}
+		li a {
+			display: block;
+			color: black;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover:not(.active) 
+		{
+			background-color: rgb(119, 97, 245);
+			border-radius: 9px;
+		}
+		.active 
+		{
+			background-color: rgb(119, 97, 245);
+			border-radius: 9px;
+		}
+        .column 
+        {
+            float: left;
+            width: 32%;
+			margin: 5px;
+			float: right;
+        }
+        /* Clear floats after the columns */
+        .row:after 
+        {
+            content: "";
+            display: table;
+            clear: both;
+		}
+		.column2 
+        {
+            float: left;
+            width: 18%;
+			margin: 5px;
+			/*float: right;*/
+        }
+        /* Clear floats after the columns */
+        .row2:after
+        {
+            content: "";
+            display: table;
+			clear: both;
+		}
+		.row2
+		{
+			width:auto;
+			background-color: white;
+		}
+		.bg-modal
+		{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+			position: absolute;
+			top: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			display: none;
+		}
+		.modal-contents
+		{
+			width: 500px;
+			height: 380px;
+			background-color: white;
+			border-radius: 10px;
+			text-align: center;
+			padding: 20px;
+			position: relative;
+		}
+		.inp
+		{
+			width: 70%;
+			display: block;
+			margin: 20px auto;
+			/* width: 100%; */
+    		padding: 12px;
+    		border: 1px solid #ccc;
+    		border-radius: 4px;
+    		resize: vertical;
+		}
+		.close
+		{
+			position: absolute;
+			top: 0;
+			right: 14px;
+			font-size: 45px;
+			transform: rotate(45deg);
+			cursor: pointer;
+		}
+		/* loading animation */
+		.no-js #loader { display: none;  }
+		.js #loader 
+		{ 
+			display: block; position: absolute; left: 100px; top: 0; 
+		}
+		.se-pre-con 
+		{
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+		}
+</style>
+</head>
+<body onload="loadstop()">
+	<div class="se-pre-con"></div>
+
+	<div class="row" >
+		<div class="column" style="display: flex;justify-content: center;align-items: center;">
+			<a class="example_b" id="hindibutton" href="/h" target="_self">हिन्दी</a>
+		</div>
+		<div class="column" style="display: flex;justify-content: center;align-items: center;">
+			<a class="example_b" id="englishbutton" href="/" target="_self">English</a>
+		</div>
+		<div class="column" style="display: flex;justify-content: center;align-items: center;"> 
+			<a class="example_b" id="telugubutton" href="/t" target="_self">తెలుగు</a>
+		</div>		
+	</div>
+	<div class="body">
+		<p>&nbsp;</p>
+		<!-- <h1>&nbsp;</h1> -->
+	<h1 style = "font-family:trajan">You are going to experience a drastic savings <br>in your distribution cost </h1>
+	</div>
+		<div style="margin: 50px;">
+			
+		<h3 style="text-align: center;">Fleet Size</h3>
+		<p style="text-align: center;">
+		<input class="search" type="number" min="1" id="v" placeholder="Total Vehicles you have" value="1" /> 
+		</p>
+		<br>
+		<h3 style="text-align: center;">km/day</h3>
+		<p style="text-align: center;">
+		<input class="search" type="number" id="km" placeholder="km/day" value="100" /> 
+		</p>
+		<br><br>
+		<div style="width: 100%;display: flex;justify-content: center;">
+		<br><br>
+		<a class="example_e" href="javascript:calculate();"> Calculate </a></div>
+	</div>
+		
+		<div id='mukesh' style="display: none;">
+			<h1 id='save'>You can save in 4 years: </h1>
+			<h1 style="color: green;" id='save2'></h1>
+			<h1>Interested To Know How You Can Save The Money!!</h1>
+			<div style="display: flex;justify-content: center;">
+			<a class="example_e" href="javascript:page2()"> Show more </a></div>
+		</div><br><br>
+		</div>
+
+
+
+
+<div class="bg-modal" id="bg-modal">
+	<div class="modal-contents">
+
+		<div class="close"><a href="javascript:closebtn()" style="text-decoration: none;color: black;">+</a></div>
+
+		<img src="{% static 'login.jpg' %}" alt="" width="120" height="120">
+		
+		<form id="modalform" >
+			{% csrf_token %}
+			<input type="text" placeholder="Name" class="inp" name='name' id='name' required>
+			<input type="number" placeholder="Phone Number" class="inp" name='phnum' id='phnum' required>
+			<input type="email" placeholder="E-mail" class="inp" name='email' id='email' required>
+			<button type='submit' style="cursor: pointer;
+			background-color: #4CAF50;color: white;padding: 12px 20px;border: none;border-radius: 4px;
+			float: centre;">Submit</button>
+		</form>
+	</div>
+</div>
+
+
+
+
+<div id='page2' style="display: none;">
+<div style="text-align: center;">
+<h1>Your Current Vehicle VS Bajaj Maxima C </h1><br>
+<div style="display: flex;justify-content: center;">
+<table >
+	<tr>
+		<th style="background-color:inherit;">Parameters</th>
+		<th style="background-color: red;">Existing Product</th>
+		<th>Bajaj Maxima C </th>
+	</tr>
+	<tr>
+		<td>Maintainace cost / month / per Vehicle*</td>
+		<td id='maintain_nrml'></td>
+		<td id='maintain_special'></td>
+	</tr>
+	<tr>
+		<td>Fuel Type</td>
+		<td>Diesel</td>
+		<td>CNG</td>
+	</tr>
+	<tr>
+		<td>Fuel Cost (Rs./L or Rs./kgs)</td>
+		<td>77.91</td>
+		<td>55</td>
+	</tr>
+	<tr>
+		<td>Average</td>
+		<td>26</td>
+		<td>35</td>
+	</tr>
+</table>
+</div><br>
+<h3>Disclaimer: These calculation are based on data received from market.</h3>
+<a class="example_e" href="javascript:page3()"> Show more </a>
+</div>
+</div>
+
+
+
+
+
+
+<div id='page3' style="display: none;">
+    <div style="text-align: center;">
+		<h1>Net Cost Incurred In Existing Product</h1>
+		<div style="display: flex;justify-content: center;">
+		<table>
+			<tr>
+				<td>Fuel Expense Rs./km</td>
+				<td>3.00</td>
+			</tr>
+			<tr>
+				<td>Per month Fuel expense for 1 vehicle</td>
+				<td id='pr_mnth_fuel_exp_nrml'>2250</td>
+			</tr>
+			<tr>
+				<td>Per year Fuel expense for 1 vehicle</td>
+				<td id='pr_yr_fuel_exp_nrml'>27000</td>
+			</tr>
+			<tr>
+				<td>Per Year Total Fleet Fuel Expense</td>
+				<td id='tot_pr_yr_fuel_exp_nrml'>27000</td>
+			</tr>
+			<tr>
+				<td>Per Year Total Fleet Maintainance Expense</td>
+				<td id='tot_pr_yr_maintain_exp_nrml'></td>
+			</tr>
+		</table></div>
+		<h1>Net Cost Incurred In Maxima C </h1>
+		<div style="display: flex;justify-content: center;">
+		<table>
+			<tr>
+				<td>Fuel Expense Rs./km</td>
+				<td>1.57</td>
+			</tr>
+			<tr>
+				<td>Per month Fuel expense for 1 vehicle</td>
+				<td id='pr_mnth_fuel_exp_special'></td>
+			</tr>
+			<tr>
+				<td>Per year Fuel expense for 1 vehicle</td>
+				<td id='pr_yr_fuel_exp_special'>14130</td>
+			</tr>
+			<tr>
+				<td>Per Year Total Fleet Fuel Expense</td>
+				<td id='tot_pr_yr_fuel_exp_special'>14130</td>
+			</tr>
+			<tr>
+				<td>Per Year Total Fleet Maintainance Expense</td>
+				<td id='tot_pr_yr_maintain_exp_special'></td>
+			</tr>
+		</table></div>
+		<h1>Saving Summary</h1>
+		<div style="display: flex;justify-content: center;">
+		<table>
+			<tr>
+				<td>Saving On Fuel (1 Yr)</td>
+				<td id='save_fuel_1'>12870</td>
+			</tr>
+			<tr>
+				<td>Saving On Fuel (4 Yr)</td>
+				<td id='save_fuel_4'>51480</td>
+			</tr>
+			<tr>
+				<td>Saving On Maintenance (1 Yr)</td>
+				<td id='save_maintain_1'>900</td>
+			</tr>
+			<tr>
+				<td>Saving On Maintenance (4 Yr)</td>
+				<td id='save_maintain_4'>3600</td>
+			</tr>
+			<tr>
+				<td>Total Savings (1 Yr)</td>
+				<td id='tot_save_1'>13770</td>
+			</tr>
+			<tr>
+				<td>Total Savings (4 Yr)</td>
+				<td id='tot_save_4'>55080</td>
+			</tr>
+		</table></div>
+	</div> 
+</div>
+<br><br>
+<div id='footer' style="text-align: center;border-radius: 10px;display: none;">
+	<ul>
+		<br>
+	  <li><img src="{% static 'bajaj.png' %}"> </li></ul> 
+	  <ul style="padding-left: 400px;">
+	  <li><a href="mailto:customerservice@bajajauto.co.in">customerservice@bajajauto.co.in</a></li>
+	  <li><a>customer care : +917219821111</a></li>
+	  <li><a href="https://www.bajajauto.com/owners-arena">Support</a></li>
+		<br>
+	
+	</ul> 
+	<br>
+	Note: This website is developed by dealers of bajaj auto
+</div>
+</body>
+</html>
+
+<script>
+		function calculate()
+	{
+		var vehicles=document.getElementById('v').value
+
+		var distance=document.getElementById('km').value
+		
+		var maintain_nrml=vehicles*0.6*30
+		document.getElementById('maintain_nrml').innerHTML=maintain_nrml
+		
+		var maintain_special=vehicles*0.5*30
+		document.getElementById('maintain_special').innerHTML=maintain_special
+
+        var pr_mnth_fuel_exp_nrml=3*30*distance
+        document.getElementById('pr_mnth_fuel_exp_nrml').innerHTML=pr_mnth_fuel_exp_nrml        
+
+		var pr_yr_fuel_exp_nrml=pr_mnth_fuel_exp_nrml*12
+        document.getElementById('pr_yr_fuel_exp_nrml').innerHTML=pr_yr_fuel_exp_nrml
+
+		var tot_pr_yr_fuel_exp_nrml=pr_yr_fuel_exp_nrml*vehicles
+        document.getElementById('tot_pr_yr_fuel_exp_nrml').innerHTML=tot_pr_yr_fuel_exp_nrml
+
+		var tot_pr_yr_maintain_exp_nrml=vehicles*12*maintain_nrml
+        document.getElementById('tot_pr_yr_maintain_exp_nrml').innerHTML=tot_pr_yr_maintain_exp_nrml
+
+		var pr_mnth_fuel_exp_special=1.57*30*distance
+        document.getElementById('pr_mnth_fuel_exp_special').innerHTML=pr_mnth_fuel_exp_special
+
+		var pr_yr_fuel_exp_special=pr_mnth_fuel_exp_special*12
+        document.getElementById('pr_yr_fuel_exp_special').innerHTML=pr_yr_fuel_exp_special
+
+		var tot_pr_yr_fuel_exp_special=pr_yr_fuel_exp_special*vehicles
+        document.getElementById('tot_pr_yr_fuel_exp_special').innerHTML=tot_pr_yr_fuel_exp_special
+
+		var tot_pr_yr_maintain_exp_special=vehicles*12*maintain_special
+        document.getElementById('tot_pr_yr_maintain_exp_special').innerHTML=tot_pr_yr_maintain_exp_special
+
+		var save_fuel_1=tot_pr_yr_fuel_exp_nrml-tot_pr_yr_fuel_exp_special
+        document.getElementById('save_fuel_1').innerHTML=save_fuel_1
+
+		var save_fuel_4=save_fuel_1*4
+        document.getElementById('save_fuel_4').innerHTML=save_fuel_4
+
+		var save_maintain_1=tot_pr_yr_maintain_exp_nrml-tot_pr_yr_maintain_exp_special
+        document.getElementById('save_maintain_1').innerHTML=save_maintain_1
+
+		var save_maintain_4=save_maintain_1*4
+        document.getElementById('save_maintain_4').innerHTML=save_maintain_4
+
+		tot_save_1=save_maintain_1+save_fuel_1
+        document.getElementById('tot_save_1').innerHTML=tot_save_1
+
+		tot_save_4=tot_save_1*4
+        document.getElementById('tot_save_4').innerHTML=tot_save_4
+        
+		//document.getElementById('save').innerHTML='Rs.'+document.getElementById('save').innerHTML+tot_save_4+'/-'
+		document.getElementById('save').innerHTML='You can save Rs.'+tot_save_4+'/- in 4 years'
+		document.getElementById('save2').innerHTML='Rs.'+tot_save_4+'/-'
+		
+		// document.getElementById('bg-modal').style.display='flex'
+		document.getElementById('mukesh').style.display='block'
+		window.scrollTo(0,document.body.scrollHeight);
+		
+		// window.scrollTo(0,0);
+
+	}
+
+	function closebtn()
+	{
+		document.getElementById('bg-modal').style.display='none'
+	}
+
+	function btnmodal()
+	{
+		document.getElementById('page2').style.display='block'
+		window.scrollTo(0,document.body.scrollHeight);
+	}
+
+	function page2()
+	{
+		document.getElementById('bg-modal').style.display='flex'
+		window.scrollTo(0,0);
+
+	}
+	function page3()
+	{
+		document.getElementById('page3').style.display='block'
+		document.getElementById('footer').style.display='block'
+	}
+
+	
+</script>
+<script>
+$("#modalform").submit((e)=>
+{
+	e.preventDefault()
+
+	$.ajax({
+		type:'POST',
+		url:'/save2db',
+		data:{
+			name:$("#name").val(),
+			phnum:$("#phnum").val(),
+			email:$("#email").val(),
+			csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+		},
+		success:function()
+		{
+			//console.log('user stored')
+			alert('Thank you, Our executives will contact you soon!')
+		}
+	})
+
+	document.getElementById('bg-modal').style.display='none'
+	btnmodal()
+})
+
+//animation loader function
+
+function loadstop()
+{
+    $(".se-pre-con").fadeOut("slow");;
+}
+</script>

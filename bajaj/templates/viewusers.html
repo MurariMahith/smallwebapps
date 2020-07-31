@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Participants who registered</title>
+    <style>
+        body{
+            position: relative; 
+            background-image: url('https://placekitten.com/1200/800');
+        }
+        body::before {
+            /* content: ""; */
+            position: absolute;
+            /* top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px; */
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        td, th 
+        {
+            border: 1px solid #ddd;
+            padding: 8px;
+            width: 150px;
+        }
+        tr:nth-child(even)
+        {
+            background-color: #f2f2f2;
+        }
+        tr:hover 
+        {
+            background-color: #ddd;
+        }
+        th 
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btnclass
+        {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            margin-left: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: centre; 
+        }
+        .btnclass:hover
+        {
+            background-color: #45a049;
+            box-shadow: 10px 10px 4px #292828;
+            /* font-size: large; */
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%;display: flex;justify-content: center;align-items: center;padding-top: 80px;">
+        <table id="tblid">
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>E-mail Id</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.number }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br><br>
+    <div style="display: flex;justify-content: center;">
+        <button id='btn' class="btnclass">Download as Excel</button></div>
+</body>
+</html>
+
+<script>
+    $('#btn').click(function () {
+        $("#tblid").table2excel({
+            name:"Worksheet Name",
+            filename:"bajajusers",//do not include extension
+            fileext:".xls"
+        });
+    });
+</script>
